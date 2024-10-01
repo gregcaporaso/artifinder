@@ -22,12 +22,7 @@ setup(
     author_email="greg.caporaso@nau.edu",
     description=description,
     url="https://cap-lab.bio",
-    entry_points={
-        "qiime2.plugins": [
-            "artifinder="
-            "artifinder"
-            ".plugin_setup:plugin"]
-    },
+    entry_points={},
     package_data={
         "artifinder": ["citations.bib"],
         "artifinder.tests": ["data/*"],
