@@ -1,0 +1,2 @@
+include versioneer.py
+include artifinder/_version.py
