@@ -10,7 +10,7 @@ from setuptools import find_packages, setup
 
 import versioneer
 
-description = ("A template QIIME 2 plugin.")
+description = "Tooling for Q2-based Research Data Management."
 
 setup(
     name="artifinder",
@@ -33,4 +33,5 @@ setup(
         "artifinder.tests": ["data/*"],
     },
     zip_safe=False,
+    scripts=['artifinder/scripts/artifinder']
 )

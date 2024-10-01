@@ -1,0 +1,49 @@
+#!/usr/bin/env python
+
+import warnings
+warnings.filterwarnings('ignore')
+
+import sys
+import os.path
+from pathlib import Path
+
+import qiime2
+from qiime2.core.archive.provenance_lib import ProvDAG
+
+
+def artifinder(output_dir, target_result, search_dir, verbose=True):
+    prov_dag = ProvDAG(target_result, verbose=verbose)
+    print('Terminal UUID(s):')
+    for e in prov_dag.terminal_uuids:
+        print(f' * {e}')
+
+    print('Predecessors UUID(s):')
+    for n in prov_dag.collapsed_view:
+        node_data = prov_dag.get_node_data(n)
+        print(f' * {n}: {node_data.type}')
+
+if __name__ == "__main__":
+    if len(sys.argv) != 4:
+        print('USAGE: artifinder target-result-fp search-dir output-dir')
+        print(f'Arguments provided: {len(sys.argv)-1}')
+        exit(0)
+
+    target_result_fp = Path(sys.argv[1])
+    search_dir = Path(sys.argv[2])
+    output_dir = Path(sys.argv[3])
+
+    if not target_result_fp.exists():
+        raise FileNotFoundError("Specified Q2 Result file path does not exist: "
+                                f"{target_result_fp}")
+
+    if not search_dir.exists():
+        raise FileNotFoundError("Specified search directory does not exist: "
+                                f"{search_dir}")
+
+    try:
+        output_dir.mkdir()
+    except FileExistsError:
+        raise FileExistsError(f"Specified output directory exists: {output_dir}\n"
+                            "Won't overwrite.")
+
+    artifinder(output_dir, target_result_fp, search_dir)

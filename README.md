@@ -1,6 +1,6 @@
 # artifinder
 
-A [QIIME 2](https://qiime2.org) plugin [developed](https://develop.qiime2.org) by Greg Caporaso (greg.caporaso@nau.edu). 🔌
+A Research Data Management tool [developed](https://develop.qiime2.org) by Greg Caporaso (greg.caporaso@nau.edu).
 
 ## Installation instructions
 
@@ -85,7 +85,7 @@ Have fun! 😎
 
 The `artifinder` Python package was [created from a template](https://develop.qiime2.org/en/latest/plugins/tutorials/create-from-template.html).
 To learn more about `artifinder`, refer to the [project website](https://cap-lab.bio).
-To learn how to use QIIME 2, refer to the [QIIME 2 User Documentation](https://docs.qiime2.org).
+To learn how to use QIIME 2, refer to the [*Using QIIME 2*](https://use.qiime2.org).
 To learn QIIME 2 plugin development, refer to [*Developing with QIIME 2*](https://develop.qiime2.org).
 
 `artifinder` is a QIIME 2 community plugin, meaning that it is not necessarily developed and maintained by the developers of QIIME 2.
