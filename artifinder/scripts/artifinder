@@ -10,27 +10,44 @@ from pathlib import Path
 import qiime2
 from qiime2.core.archive.provenance_lib import ProvDAG
 
+from artifinder import __version__ as artifinder_version
 
-def artifinder(output_dir, target_result, search_dir, verbose=True):
-    prov_dag = ProvDAG(target_result, verbose=verbose)
-    print('Terminal UUID(s):')
+
+def _artifinder(target_result_fp, search_dir, verbose=True):
+    prov_dag = ProvDAG(target_result_fp, verbose=verbose)
+
+    observed_uuids = {
+        qiime2.Artifact.peek(fp).uuid: fp.absolute()
+        for fp in search_dir.glob('**/*.qz[av]')}
+
+    print('')
+    print('Target `Result` UUID(s):')
     for e in prov_dag.terminal_uuids:
-        print(f' * {e}')
+        print(f' * {e} ({target_result_fp.absolute()})')
 
-    print('Predecessors UUID(s):')
+    print('')
+    print('Predecessor `Results`:')
     for n in prov_dag.collapsed_view:
         node_data = prov_dag.get_node_data(n)
-        print(f' * {n}: {node_data.type}')
+        print(f' * {n}')
+        print(f'  * {node_data.type}')
+        try:
+            print(f'  * {observed_uuids[n]}')
+        except KeyError:
+            print(f'  * Result not found in search path.')
+
+    print('')
+    print('---')
+    print(f'Run with `artifinder` version: {artifinder_version}')
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        print('USAGE: artifinder target-result-fp search-dir output-dir')
+    if len(sys.argv) != 3:
+        print('USAGE: artifinder target-result-fp search-dir')
         print(f'Arguments provided: {len(sys.argv)-1}')
         exit(0)
 
     target_result_fp = Path(sys.argv[1])
     search_dir = Path(sys.argv[2])
-    output_dir = Path(sys.argv[3])
 
     if not target_result_fp.exists():
         raise FileNotFoundError("Specified Q2 Result file path does not exist: "
@@ -40,10 +57,4 @@ if __name__ == "__main__":
         raise FileNotFoundError("Specified search directory does not exist: "
                                 f"{search_dir}")
 
-    try:
-        output_dir.mkdir()
-    except FileExistsError:
-        raise FileExistsError(f"Specified output directory exists: {output_dir}\n"
-                            "Won't overwrite.")
-
-    artifinder(output_dir, target_result_fp, search_dir)
+    _artifinder(target_result_fp, search_dir)
