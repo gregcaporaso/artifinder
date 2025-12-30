@@ -1,0 +1,52 @@
+# Written while referencing:
+#  - https://packaging.python.org/en/latest/tutorials/packaging-projects/#choosing-a-build-backend
+
+[build-system]
+requires = [
+  "setuptools",
+  "versioningit",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "artifinder"
+dynamic = ["version"]
+authors = [
+  { name="Greg Caporaso", email="greg.caporaso@nau.edu" },
+]
+description = "A utility script for rachis research data management."
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+dependencies = [
+  "click",
+  "qiime2"
+]
+
+[project.scripts]
+artifinder = "artifinder:cli"
+
+[project.urls]
+Homepage = "https://rachis.org"
+Issues = "https://github.com/gregcaporaso/artifinder/issues"
+
+[tool.versioningit.vcs]
+method = "git-archive"
+describe-subst = "$Format:%(describe)$"
+default-tag = "0.0.1"
+
+[tool.versioningit.next-version]
+method = "minor"
+
+[tool.versioningit.format]
+distance = "{base_version}+{distance}.{vcs}{rev}"
+dirty = "{base_version}+{distance}.{vcs}{rev}.dirty"
+distance-dirty = "{base_version}+{distance}.{vcs}{rev}.dirty"
+
+[tool.versioningit.write]
+file = "src/artifinder/_version.py"
