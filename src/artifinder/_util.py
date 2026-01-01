@@ -7,10 +7,12 @@ from qiime2.core.archive.provenance_lib import ProvDAG
 
 from ._version import __version__ as artifinder_version
 
+
 @click.group()
 def cli():
     """artifinder: a utility for rachis research data management"""
     pass
+
 
 @cli.command()
 @click.argument('search_dir',
@@ -54,6 +56,7 @@ def prov(search_dir, target_result_fp, verbose, report_target,
         for uuid, type in unfound_uuids.items():
             print(f'{uuid}\t{type}')
         print('')
+
 
 def _provenance_search(search_dir, target_result_fp, verbose):
     target_uuids = {}

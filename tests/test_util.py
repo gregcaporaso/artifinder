@@ -9,7 +9,7 @@ class ArtifinderTests(unittest.TestCase):
     def setUp(self):
         test_dir = pathlib.Path(__file__).parent
         self.search_dir1 = test_dir / 'data'
-        self.target_fp1 = test_dir/ 'data' / 'scatter_plot.qzv'
+        self.target_fp1 = test_dir / 'data' / 'scatter_plot.qzv'
 
     def test_provenance_search(self):
         target_uuids, found_uuids, unfound_uuids = \
@@ -20,7 +20,7 @@ class ArtifinderTests(unittest.TestCase):
         self.assertEqual(len(target_uuids), 1)
 
         expected_found = {'7095b508-4ae3-4791-9e7d-7ca4f5a50279',
-                            '76793c84-899d-4540-8352-1a0d2255500c'}
+                          '76793c84-899d-4540-8352-1a0d2255500c'}
         for e in expected_found:
             self.assertTrue(e in found_uuids)
         self.assertEqual(len(found_uuids), len(expected_found))

@@ -1,0 +1,9 @@
+channels:
+- https://packages.qiime2.org/qiime2/2026.1/tiny/passed/
+- conda-forge
+- bioconda
+dependencies:
+  - qiime2-tiny
+  - pip
+  - pip:
+     - artifinder@git+https://github.com/gregcaporaso/artifinder.git@main
