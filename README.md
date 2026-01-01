@@ -42,4 +42,4 @@ Have fun! 😎
 
 ## About
 
-`artifinder` is developed by [Greg Caporaso](https://cap-lab.us).
+`artifinder` is developed by [Greg Caporaso](https://caplab.dev).
