@@ -31,6 +31,9 @@ dependencies = [
 [project.scripts]
 artifinder = "artifinder:cli"
 
+[tool.setuptools.package-data]
+artifinder = ["tests/data/*.qza", "tests/data/*.qzv", "tests/data/README.md"]
+
 [project.urls]
 Homepage = "https://rachis.org"
 Issues = "https://github.com/gregcaporaso/artifinder/issues"
