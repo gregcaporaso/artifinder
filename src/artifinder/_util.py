@@ -47,13 +47,19 @@ def prov(search_dir, target_result_fp, verbose, report_target,
         print('')
 
     print('Found `Results`:')
-    for uuid, (type, path) in found_uuids.items():
+    # sort by semantic type
+    sorted_found_uuids = sorted(found_uuids.items(),
+                                key=lambda item: item[1][0])
+    for uuid, (type, path) in sorted_found_uuids:
         print(f'{uuid}\t{type}\t{path}')
     print('')
 
     if report_missing:
         print('`Results` not found:')
-        for uuid, type in unfound_uuids.items():
+        # sort by semantic type
+        sorted_unfound_uuids = sorted(unfound_uuids.items(),
+                                      key=lambda item: item[1])
+        for uuid, type in sorted_unfound_uuids:
             print(f'{uuid}\t{type}')
         print('')
 
