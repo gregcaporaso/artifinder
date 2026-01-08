@@ -13,7 +13,7 @@ This can be useful when:
 If you have an existing `rachis` deployment, such as QIIME 2 2025.10, or MOSHPIT 2025.10, you can activate that environment and then install `artifinder` as follows:
 
 ```shell
-pip install https://github.com/gregcaporaso/artifinder/archive/refs/heads/main.zip
+pip install git+https://github.com/gregcaporaso/artifinder.git@main
 ```
 
 If you don't have an existing deployment, you can install the tiny distribution with artifinder as follows:
