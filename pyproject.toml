@@ -24,8 +24,15 @@ classifiers = [
 license = "BSD-3-Clause"
 license-files = ["LICENSE"]
 dependencies = [
-  "click",
-  "qiime2"
+  "click>=8.1.8",
+  "rachis"
+]
+
+[dependency-groups]
+dev = [
+    "nox>=2026.2.9",
+    "pytest>=9.0.2",
+    "ruff>=0.15.2",
 ]
 
 [project.scripts]
@@ -40,7 +47,7 @@ Issues = "https://github.com/gregcaporaso/artifinder/issues"
 
 [tool.versioningit.vcs]
 method = "git-archive"
-describe-subst = "$Format:%(describe)$"
+describe-subst = "$Format:%(describe:tags)$"
 default-tag = "0.0.1"
 
 [tool.versioningit.next-version]
