@@ -60,3 +60,10 @@ distance-dirty = "{base_version}+{distance}.{vcs}{rev}.dirty"
 
 [tool.versioningit.write]
 file = "src/artifinder/_version.py"
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.lint]
+# equivalent for flake8
+extend-select = ["E", "F", "W"]
