@@ -13,13 +13,13 @@ This can be useful when:
 If you have an existing `rachis` deployment, such as QIIME 2 2025.10, or MOSHPIT 2025.10, you can activate that environment and then install `artifinder` as follows:
 
 ```shell
-pip install git+https://github.com/gregcaporaso/artifinder.git@main
+pip install --no-deps artifinder
 ```
 
-If you don't have an existing deployment, you can install the tiny distribution with artifinder as follows:
+If you don't have an existing deployment, you can install via PyPI as follows:
 
 ```shell
-conda env create -n artifinder --file https://raw.githubusercontent.com/gregcaporaso/artifinder/refs/heads/main/environment-files/artifinder-dev.yml
+pip install artifinder
 ```
 
 ## Basic usage

@@ -2,8 +2,13 @@ import pathlib
 
 import click
 
-from qiime2.sdk.result import Result
-from qiime2.core.archive.provenance_lib import ProvDAG
+try:
+    from rachis.sdk.result import Result
+    from rachis.core.archive.provenance_lib import ProvDAG
+except ModuleNotFoundError:
+    from qiime2.sdk.result import Result
+    from qiime2.core.archive.provenance_lib import ProvDAG
+
 
 from ._version import __version__ as artifinder_version
 
